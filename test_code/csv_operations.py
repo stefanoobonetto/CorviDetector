@@ -1,13 +1,19 @@
-#
-# Copyright (c) 2023 Image Processing Research Group of University Federico II of Naples ('GRIP-UNINA').
-# All rights reserved.
-# This work should only be used for nonprofit purposes.
-#
-# By downloading and/or using any of these files, you implicitly agree to all the
-# terms of the license, as specified in the document LICENSE.txt
-# (included in this package) and online at
-# http://www.grip.unina.it/download/LICENSE_OPEN.txt
-#
+'''                                        
+Copyright 2024 Image Processing Research Group of University Federico
+II of Naples ('GRIP-UNINA'). All rights reserved.
+                        
+Licensed under the Apache License, Version 2.0 (the "License");       
+you may not use this file except in compliance with the License. 
+You may obtain a copy of the License at                    
+                                           
+    http://www.apache.org/licenses/LICENSE-2.0
+                                                      
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,    
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.                         
+See the License for the specific language governing permissions and
+limitations under the License.
+'''
 
 # This script applies random operations to all images in an input directory and saves the results in an output directory.
 # The images are cropped and resized to 200x200 pixels and then compressed using JPEG at a random quality level.
