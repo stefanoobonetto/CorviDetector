@@ -49,7 +49,7 @@ Dataset directory
         |--0_real
         |--1_fake
 ```
-There should be two folders, one for training and one for validation. There folders should contain the subfolders present in the zip file. Each subfolders should have two subfolders each one with fake images (1_fake) and one with real images (0_real).
+There should be two folders, one for training and one for validation. These folders should contain the subfolders present in the zip file. Each subfolders should have two subfolders each one with fake images (1_fake) and one with real images (0_real).
 If the pytorch version used is >1.12.0 no folder should be left empty, otherwise the code would not run.
 
 ## Code
