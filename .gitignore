@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.DS_Store/
+training_code/LTXVideo
+training_code/Real
