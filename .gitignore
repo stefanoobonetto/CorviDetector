@@ -132,3 +132,5 @@ training_code/LTXVideo
 training_code/Real
 training_code/data
 training_code/data.zip
+data
+test_code/weights/Corvi_pretrain.pth

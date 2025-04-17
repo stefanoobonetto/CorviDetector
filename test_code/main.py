@@ -1,20 +1,3 @@
-'''                                        
-Copyright 2024 Image Processing Research Group of University Federico
-II of Naples ('GRIP-UNINA'). All rights reserved.
-                        
-Licensed under the Apache License, Version 2.0 (the "License");       
-you may not use this file except in compliance with the License. 
-You may obtain a copy of the License at                    
-                                           
-    http://www.apache.org/licenses/LICENSE-2.0
-                                                      
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,    
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.                         
-See the License for the specific language governing permissions and
-limitations under the License.
-'''
-
 import torch  # >=1.6.0
 import os
 import pandas
@@ -47,14 +30,16 @@ def runnig_tests(data_path, output_dir, weights_dir, csv_file):
 
     # NOTE: Substitute the device with 'cpu' if gpu acceleration is not required
 
-    device = 'cuda:0'  # in ['cpu', 'cuda:0']
+    device = 'cuda:0' if torch.cuda.is_available() else 'cpu'  # Automatically select device
+
+    print("----> Using device:", device)
+
     batch_size = 1
 
     ### list of models
 
     models_list = {
-        'Grag2021_progan': 'Grag2021_progan',
-        'Grag2021_latent': 'Grag2021_latent'
+        'Corvi_pretrain': 'Corvi_pretrain'
     }
 
     models_dict = dict()
@@ -189,16 +174,15 @@ def runnig_tests(data_path, output_dir, weights_dir, csv_file):
                 table_to_save.insert(1, 'label', True)
             table_to_save.to_csv(output_csv, index=False)  # save the results as csv file
 
-
 def main():
     print("Running the Tests")
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data_dir", type=str, help="The path to the images of the testset on which the operations have been pre applied with the provided code", default="./TestSetCSV/")
-    parser.add_argument("--out_dir", type=str, help="The Path where the csv containing the outputs of the networks should be saved", default="./results_tst")
-    parser.add_argument("--weights_dir", type=str, help="The path to the weights of the networks", default="./weights")
-    parser.add_argument("--csv_file", type=str, help="The path to the csv file", default="./TestSetCSV/operations.csv")
+    parser.add_argument("--data_dir", type=str, help="The path to the images of the testset on which the operations have been pre applied with the provided code", default=os.path.join(os.path.dirname(__file__), "data/test/test_set_1/"))
+    # parser.add_argument("--data_dir", type=str, help="The path to the images of the testset on which the operations have been pre applied with the provided code", default="")
+    parser.add_argument("--out_dir", type=str, help="The Path where the csv containing the outputs of the networks should be saved", default=os.path.join(os.path.dirname(__file__), "results_test"))
+    parser.add_argument("--weights_dir", type=str, help="The path to the weights of the networks", default=os.path.join(os.path.dirname(__file__), "weights"))
+    parser.add_argument("--csv_file", type=str, help="The path to the csv file", default=os.path.join(os.path.dirname(__file__), "operations.csv"))
     args = vars(parser.parse_args())
     runnig_tests(args['data_dir'], args['out_dir'], args['weights_dir'], args['csv_file'])
-
 
 main()

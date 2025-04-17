@@ -24,23 +24,12 @@ import os
 def get_method_here(model_name, weights_path):
     if False:
         pass
-    elif model_name == 'Grag2021_progan':
-        model_name = 'Grag2021_progan'
-        model_path = os.path.join(weights_path, model_name + '/model_epoch_best.pth')
-        arch = 'res50stride1'
-        norm_type = 'resnet'
-        patch_size = None
-    elif model_name == 'Grag2021_latent':
-        model_name = 'Grag2021_latent'
-        model_path = os.path.join(weights_path, model_name + '/model_epoch_best.pth')
-        arch = 'res50stride1'
-        norm_type = 'resnet'
-        patch_size = None
     else:
-        print(model_name)
-        from get_method import get_method
-        model_name, model_path, arch, norm_type, patch_size = get_method(
-            model_name)
+        model_name = 'Corvi_pretrain'
+        model_path = os.path.join(weights_path, model_name + '.pth')
+        arch = 'res50stride1'
+        norm_type = 'resnet'
+        patch_size = None
 
     return model_name, model_path, arch, norm_type, patch_size
 
@@ -97,7 +86,7 @@ def def_model(arch, model_path, localize=False):
     import torch
 
     if arch == 'res50':
-        from networks.networks.resnet import resnet50
+        from networks.resnet import resnet50
         model = resnet50(num_classes=1)
     elif arch == 'resnet18':
         from torchvision.models import resnet18
@@ -105,7 +94,7 @@ def def_model(arch, model_path, localize=False):
         num_ftrs = model.fc.in_features
         model.fc = torch.nn.Linear(num_ftrs, 1)
     elif arch == 'res50stride1':
-        import networks.networks.resnet_mod as resnet_mod
+        import networks.resnet_mod as resnet_mod
         model = resnet_mod.resnet50(num_classes=1, gap_size=1, stride0=1)
     else:
         print(arch)
