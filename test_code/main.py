@@ -30,7 +30,7 @@ def runnig_tests(data_path, output_dir, weights_dir, csv_file):
 
     # NOTE: Substitute the device with 'cpu' if gpu acceleration is not required
 
-    device = 'cuda:0' if torch.cuda.is_available() else 'cpu'  # Automatically select device
+    device = 'cuda:0' if torch.cuda.is_available() else 'mps'  # Automatically select device
 
     print("----> Using device:", device)
 
