@@ -89,8 +89,10 @@ def runnig_tests(data_path, output_dir, weights_dir, csv_file):
 
     print(len(datasets), datasets.keys())
 
-    # Automatically select device
-    device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
+    # NOTE: Substitute the device with 'cpu' if gpu acceleration is not required
+
+    device = 'cuda:0' if torch.cuda.is_available() else 'mps'  # Automatically select device
+
     print("----> Using device:", device)
 
     batch_size = 1
